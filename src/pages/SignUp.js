@@ -8,9 +8,9 @@ const SignUp = (props) => {
   const [response, setResponse] = useState(null);
 
   const onSubmit = async () => {
-    const response = await fetch("localhost:5001/signUp", {
+    const response = await fetch("https://localhost:5001/signup", {
       method: "POST",
-      mode: "no-cors",
+      mode: "*cors",
       cache: "no-cache",
       credentials: "same-origin",
       headers: {
@@ -20,7 +20,11 @@ const SignUp = (props) => {
       referrerPolicy: "no-referrer",
       body: JSON.stringify({ username: username, password: password }),
     });
-    setResponse(response.json());
+    // console.log(await response.json());
+    setResponse(await response.json());
+    if (response.status != 200){
+      alert("User already signed up");
+    }
   };
 
   return (

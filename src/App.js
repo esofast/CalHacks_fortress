@@ -7,10 +7,12 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from './pages/Login';
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import SignUp from './pages/SignUp';
 
 function App(props) {
+  const [userId, setUserId] = useState('');
+
   return (
     <Router>
       <div className="App">
@@ -36,7 +38,6 @@ function App(props) {
             }
           />
           <Route
-            exact
             path="/"
             element={
               <Fragment>

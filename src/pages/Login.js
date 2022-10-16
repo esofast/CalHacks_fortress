@@ -6,9 +6,10 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = async () => {
-    const response = await fetch("localhost:5001/login", {
+    const response = await fetch("http://localhost:5001/login", {
       method: "POST",
       mode: "no-cors",
       cache: "no-cache",
@@ -20,7 +21,13 @@ const Login = (props) => {
       referrerPolicy: "no-referrer",
       body: JSON.stringify({ username: username, password: password }),
     });
-    setResponse(response.json());
+
+    console.log(await response.json())
+    // setResponse(await response.json());
+    setSubmitted(true);
+    if (!(username && password)) {
+      setResponse(null);
+    }
   };
 
   return (
@@ -37,14 +44,14 @@ const Login = (props) => {
           <Typography variant="h3">Login</Typography>
           <TextField
             label="Username"
-            error={response && !username}
+            error={submitted && !username}
             autoFocus={true}
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
           <TextField
             label="Password"
-            error={response && !password}
+            error={submitted && !password}
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
@@ -55,6 +62,7 @@ const Login = (props) => {
       <Button variant="outlined" sx={{ marginTop: "16px" }} onClick={onSubmit}>
         Submit
       </Button>
+      {response && username && password && <Typography>Success!</Typography>}
     </Fragment>
   );
 };

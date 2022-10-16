@@ -1,17 +1,20 @@
 import React, { Fragment, useState } from "react";
-import { Box, Button, Typography, Slider, Stack } from "@mui/material";
+import { Box, Button, Typography, Slider, Stack, Paper } from "@mui/material";
 import "./Form.css";
 import { sortJSON } from "../utils/utils";
 
 const Form = (props) => {
   const [happiness, setHappiness] = useState(0);
+  const [songs, setSongs] = useState([]);
+  const [showSongs, show] = useState(false);
 
-  const distance = (x1, x2, y1, y2) => {
-    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  const onSubmit = async () => {
+    setSongs(sortJSON(happiness).slice(0, 30).sort(() => Math.random() - 0.5).slice(0, 10));
+    show(true);
   };
 
-  const onSubmit = () => {
-    sortJSON();
+  const onClick = async () => {
+    const response = await fetch()
   };
 
   return (
@@ -35,6 +38,35 @@ const Form = (props) => {
       <Button variant="outlined" sx={{ marginTop: "16px" }} onClick={onSubmit}>
         Submit
       </Button>
+      <div className="divLeft">
+        <Box sx={{ width: "30%" }}>
+          {showSongs && (
+            <Fragment>
+              <h2>Top 10 Song Recommendations</h2>
+              {songs.map((song) => {
+                return (
+                  <Paper
+                    elevation={3}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "12px",
+                      padding: "12px",
+                      alignItems: "flex-start",
+                      margin: "8px",
+                    }}
+                    onClick={() => onClick(song)}
+                  >
+                    <Typography>Title: {song[0]}</Typography>
+                    <Typography>Artist: {song[1]}</Typography>
+                    <Typography>Album: {song[2]}</Typography>
+                  </Paper>
+                );
+              })}
+            </Fragment>
+          )}
+        </Box>
+      </div>
     </Fragment>
   );
 };
