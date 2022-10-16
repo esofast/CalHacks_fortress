@@ -1,24 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import NavBar from "./components/NavBar";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import { Fragment } from "react";
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route
+            exact
+            path="/raise"
+            element={
+              <Fragment>
+                <NavBar curPage="Raise Funds" />
+                {/* <About /> */}
+              </Fragment>
+            }
+          />
+          <Route
+            exact
+            path="/browse"
+            element={
+              <Fragment>
+                <NavBar curPage="Browse" />
+                {/* <About /> */}
+              </Fragment>
+            }
+          />
+          <Route
+            exact
+            path="/account"
+            element={
+              <Fragment>
+                <NavBar curPage="Account" />
+                {/* <About /> */}
+              </Fragment>
+            }
+          />
+          <Route
+            exact
+            path="/logout"
+            element={
+              <Fragment>
+                <NavBar curPage="Logout" />
+                {/* <Logout /> */}
+              </Fragment>
+            }
+          />
+          <Route
+            exact
+            path="/"
+            element={
+              <Fragment>
+                <NavBar curPage="Home Page" />
+                <HomePage />
+              </Fragment>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
