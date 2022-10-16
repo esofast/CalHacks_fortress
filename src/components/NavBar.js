@@ -13,8 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AssistantPhoto from "@mui/icons-material/AssistantPhoto";
 
-const pages = ["Browse", "Raise Funds"];
-const settings = ["Account", "Logout"];
+const pages = [];
+const settings = ["Account", "Login", "Sign Up"];
 
 const NavBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -93,7 +93,7 @@ const NavBar = (props) => {
                     <Typography
                       textAlign="center"
                       color="ButtonHighlight"
-                      href={page === 'Browse' ? '/browse' : page === 'Raise Funds' ? '/raise' : '/'}
+                      href={page === 'History' ? '/history' : '/'}
                     >
                       {page}
                     </Typography>
@@ -129,7 +129,7 @@ const NavBar = (props) => {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
-                href={page === 'Browse' ? '/browse' : page === 'Raise Funds' ? '/raise' : '/'}
+                href={page === 'History' ? '/history' : '/'}
               >
                 {page}
               </Button>
@@ -160,7 +160,7 @@ const NavBar = (props) => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Button href={setting === 'Account' ? '/account' : '/logout'}>{setting}</Button>
+                    <Button href={setting === 'Sign Up' ? '/signup' : '/login'}>{setting}</Button>
                 </MenuItem>
               ))}
             </Menu>

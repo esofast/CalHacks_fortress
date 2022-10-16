@@ -6,7 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import Login from './pages/Login';
 import { Fragment } from "react";
+import SignUp from './pages/SignUp';
 
 function App(props) {
   return (
@@ -15,41 +17,21 @@ function App(props) {
         <Routes>
           <Route
             exact
-            path="/raise"
+            path="/signup"
             element={
               <Fragment>
-                <NavBar curPage="Raise Funds" />
-                {/* <About /> */}
+                <NavBar curPage="Sign Up" />
+                <SignUp />
               </Fragment>
             }
           />
           <Route
             exact
-            path="/browse"
+            path="/login"
             element={
               <Fragment>
-                <NavBar curPage="Browse" />
-                {/* <About /> */}
-              </Fragment>
-            }
-          />
-          <Route
-            exact
-            path="/account"
-            element={
-              <Fragment>
-                <NavBar curPage="Account" />
-                {/* <About /> */}
-              </Fragment>
-            }
-          />
-          <Route
-            exact
-            path="/logout"
-            element={
-              <Fragment>
-                <NavBar curPage="Logout" />
-                {/* <Logout /> */}
+                <NavBar curPage="Login" />
+                <Login />
               </Fragment>
             }
           />
