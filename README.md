@@ -1,3 +1,5 @@
 # CalHacks_fortress
-Created a Mood-Based Song Recommendation engine
-Built a front-end and backend taking in
+Used Flask and React.js to create a mood-based song recommendation website. 
+Performed sentiment analysis on 10,000 songs and ranked them on a scale of sad to happy.
+When the user drags the slider, the top 10 songs that fit to the slider position are output.
+
